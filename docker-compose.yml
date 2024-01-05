@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: laravelapp
+        ports:
+            - "8000:80"
+        volumes:
+            - .:/var/www
+        environment:
+            APP_ENV: development
+        depends_on:
+            - redis
+
+    redis:
+        image: "redis:alpine"
+        ports:
+            - "6379:6379"
